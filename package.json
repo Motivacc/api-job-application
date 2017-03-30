@@ -1,0 +1,17 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "server express for jobapplication",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+   "dependencies": {
+    "body-parser": "~1.15.2",
+    "express": "~4.14.0"
+  },
+  "author": "Antonio Nicasio",
+  "license": "ISC"
+}
