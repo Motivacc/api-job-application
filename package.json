@@ -1,7 +1,7 @@
 {
   "name": "express-server",
   "version": "1.0.0",
-  "description": "server express for jobapplication",
+  "description": "server express for API Job Application",
   "main": "index.js",
   "private": true,
   "scripts": {
