@@ -16,14 +16,6 @@ mongoose.connect(dbHost, function(err) {
     }
 });
 
-// mongoose.connection.on("Error:", (err) => {
-//     if(err){
-//         console.log('No nos podemos Conectar a la BD')
-//     }else {
-//         console.log('Conexion Ok')
-//     }
-// });
-
 // Creamos el Schema  de la BD
 
 const applicantSchema = new mongoose.Schema({
@@ -112,73 +104,72 @@ router.get('/applicants/:id', (req, res) => {
 
 //Creamos el Applicante en la Base de Datos
 router.post('/applicants', (req, res) => {
-   let applicantes = new Applicant({
-        workbefore: req.body.workbefore,
-        payrange: req.body.payrange,
-        desposition:req.body.desposition,
-        name: req.body.name,
-        psourname: req.body.psourname,
-        msourname: req.body.msourname,
-        dob: req.body.dob,
-        age: req.body.age,
-        gender: req.body.gender,
-        pofbirth: req.body.pofbirth,
-        nationality: req.body.nationality,
-        city: req.body.city ,
-        satate: req.body.satate ,
-        zipcode: req.body.zipcode ,
-        street: req.body.street,
-        streetNumber: req.body.streetNumber ,
-        appartNumber: req.body.appartNumber,
-        homePhone: req.body.homePhone,
-        mobileNumber: req.body.mobileNumber ,
-        secondaryPhone: req.body.secondaryPhone,
-        radio: req.body.radio,
-        email: req.body.email,
-        relation: req.body.relation,
-        spouseName: req.body.spouseName,
-        childrens: req.body.childrens,
-        fatherName: req.body.fatherName,
-        motherName: req.body.mothernAME,
-        emergencyContact: req.body.emergencyContact,
-        relationshipContact: req.body.relationshipContact,
-        relcontactPhone: req.body.relcontactPhone,
-        dependentYou: req.body.dependentYou,
-        timeResident: req.body.timeResident,
-        education: req.body.education,
-        school: req.body.school,
-        graduationDate: req.body.graduationDate,
-        degree: req.body.degree,
-        englishProficiency: req.body.englishProficiency,
-        englishWriteLevel: req.body.englishWriteLevel,
-        computerProficiency: req.body.computerProficiency,
-        validVisa: req.body.validVisa,
-        bodyTattos: req.body.bodyTattos,
-        memberClub: req.body.memberClub,
-        criminalRecord: req.body.criminalRecord,
-        prisionMexico: req.body.prisionMexico,
-        shift: req.body.shift,
-        callWork: req.body.callWork,
-        nightShift: req.body.nightShift,
-        refName: req.body.refName,
-        refOccupation: req.body.refOccupation,
-        refPhone: req.body.refPhone,
-        refKnow: req.body.refKnow,
-        refEmail: req.body.refemail,
-        workExperince: req.body.workExperince,
-        companyName: req.body.companyName,
-        companyCountry: req.body.companyCountry,
-        companyDate: req.body.companyDate,
-        leaveJob: req.body.leaveJob,
-        jobTitle: req.body.jobTitle,
-        supervisorName: req.body.supervisorName, 
-   }); 
+    var applicants = new Applicant();
+    applicants.workbefore = req.body.workbefore;
+        applicants.payrange = req.body.payrange;
+        applicants.desposition = req.body.desposition;
+        applicants.name = req.body.name;
+        applicants.psourname = req.body.psourname;
+        applicants.msourname = req.body.msourname;
+        applicants.dob = req.body.dob;
+        applicants.age = req.body.age;
+        applicants.gender = req.body.gender;
+        applicants.pofbirth = req.body.pofbirth;
+        applicants.nationality = req.body.nationality;
+        applicants.city = req.body.city ;
+        applicants.satate = req.body.satate;
+        applicants.zipcode = req.body.zipcode;
+        applicants.street = req.body.street;
+        applicants.streetNumber = req.body.streetNumber;
+        applicants.appartNumber = req.body.appartNumber;
+        applicants.homePhone = req.body.homePhone;
+        applicants.mobileNumber = req.body.mobileNumber;
+        applicants.secondaryPhone = req.body.secondaryPhone;
+        applicants.radio = req.body.radio;
+        applicants.email = req.body.email;
+        applicants.relation = req.body.relation;
+        applicants.spouseName = req.body.spouseName;
+        applicants.childrens = req.body.childrens;
+        applicantsfatherName = req.body.fatherName;
+        applicants.motherName = req.body.motherName;
+        applicants.emergencyContact = req.body.emergencyContact;
+        applicants.relationshipContact = req.body.relationshipContact;
+        applicants.relcontactPhone = req.body.relcontactPhone;
+        applicants.dependentYou = req.body.dependentYou;
+        applicants.timeResident = req.body.timeResident;
+        applicants.education = req.body.education;
+        applicants.school = req.body.school;
+        applicants.graduationDate = req.body.graduationDate;
+        applicants.degree = req.body.degree;
+        applicants.englishProficiency = req.body.englishProficiency;
+        applicants.englishWriteLevel = req.body.englishWriteLevel;
+        applicants.computerProficiency = req.body.computerProficiency;
+        applicants.validVisa = req.body.validVisa;
+        applicants.bodyTattos = req.body.bodyTattos;
+        applicants.memberClub = req.body.memberClub;
+        applicants.criminalRecord = req.body.criminalRecord;
+        applicants.prisionMexico = req.body.prisionMexico;
+        applicants.shift = req.body.shift;
+        applicants.callWork = req.body.callWork;
+        applicants.nightShift = req.body.nightShift;
+        applicants.refName = req.body.refName;
+        applicants.refOccupation = req.body.refOccupation;
+        applicants.refPhone = req.body.refPhone;
+        applicants.refKnow = req.body.refKnow;
+        applicants.refEmail = req.body.refemail;
+        applicants.workExperince = req.body.workExperince;
+        applicants.companyName = req.body.companyName;
+        applicants.companyCountry = req.body.companyCountry;
+        applicants.companyDate = req.body.companyDate;
+        applicants.leaveJob = req.body.leaveJob;
+        applicants.jobTitle = req.body.jobTitle;
+        applicants.supervisorName = req.body.supervisorName;  
 
-    applicantes.save(error => {
+      applicants.save(error => {
         if (error) res.status(500).send(error);
 
         res.status(201).json({
-            message: 'User created successfully'
+            message: 'Applicant created successfully'
         });
     });
    
