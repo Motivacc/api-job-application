@@ -1,6 +1,14 @@
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
+const bodyParser = require('body-parser');
+
+
+const app = express();
+
+// Parseamos nuestra Data
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 // MongoDb URL 
 
@@ -16,8 +24,7 @@ mongoose.connect(dbHost, function(err) {
     }
 });
 
-// Creamos el Schema  de la BD
-
+// Creamos el Modelo Schema  de la BD
 const applicantSchema = new mongoose.Schema({
     workbefore: {type:String, enum: ['Yes', 'No']},
     payrange: String,
@@ -84,6 +91,7 @@ const applicantSchema = new mongoose.Schema({
 // Creamos el Modelo 
 
 const Applicant = mongoose.model('Applicant', applicantSchema);
+module.exports = Applicant;
 
 // Obtenemos todos los Aplicantes GET ALL
 router.get('/applicants', (req, res) => {
@@ -104,8 +112,9 @@ router.get('/applicants/:id', (req, res) => {
 
 //Creamos el Applicante en la Base de Datos
 router.post('/applicants', (req, res) => {
+    
     var applicants = new Applicant();
-    applicants.workbefore = req.body.workbefore;
+        applicants.workbefore = req.body.workbefore;
         applicants.payrange = req.body.payrange;
         applicants.desposition = req.body.desposition;
         applicants.name = req.body.name;
@@ -130,7 +139,7 @@ router.post('/applicants', (req, res) => {
         applicants.relation = req.body.relation;
         applicants.spouseName = req.body.spouseName;
         applicants.childrens = req.body.childrens;
-        applicantsfatherName = req.body.fatherName;
+        applicants.fatherName = req.body.fatherName;
         applicants.motherName = req.body.motherName;
         applicants.emergencyContact = req.body.emergencyContact;
         applicants.relationshipContact = req.body.relationshipContact;
@@ -164,16 +173,18 @@ router.post('/applicants', (req, res) => {
         applicants.leaveJob = req.body.leaveJob;
         applicants.jobTitle = req.body.jobTitle;
         applicants.supervisorName = req.body.supervisorName;  
-
+       
       applicants.save(error => {
         if (error) res.status(500).send(error);
 
         res.status(201).json({
-            message: 'Applicant created successfully'
+            message: 'Applicant created successfully',     
+            
         });
+        console.log(req.body)
     });
-   
 });
+   
 
 // Obtenemos nuestro API List
 router.get('/', (req,res) => {
