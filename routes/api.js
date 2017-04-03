@@ -38,7 +38,7 @@ const applicantSchema = new mongoose.Schema({
     pofbirth: String,
     nationality: String,
     city: {type:String, enum: ['Tijuana', 'Tecate', 'Mexicali', 'Rosarito', 'Ensenada']},
-    satate: {type:String, enum: ['Baja California', 'Other']},
+    state: {type:String, enum: ['Baja California', 'Other']},
     zipcode: Number,
     street: String,
     streetNumber: String,
@@ -104,11 +104,13 @@ router.get('/applicants', (req, res) => {
 // Obetenmos los Aplicantes de Manera Indivudual
 
 router.get('/applicants/:id', (req, res) => {
-    Applicant.findById.apply(req.param.id, (err, applicants) => {
+    Applicant.findById(req.params.id, (err, applicants) => {
         if(err) res.status(500).send(error)
         res.status(200).json(applicants);
+        console.log(applicants)
     });
 });
+
 
 //Creamos el Applicante en la Base de Datos
 router.post('/applicants', (req, res) => {
@@ -126,7 +128,7 @@ router.post('/applicants', (req, res) => {
         applicants.pofbirth = req.body.pofbirth;
         applicants.nationality = req.body.nationality;
         applicants.city = req.body.city ;
-        applicants.satate = req.body.satate;
+        applicants.state = req.body.satate;
         applicants.zipcode = req.body.zipcode;
         applicants.street = req.body.street;
         applicants.streetNumber = req.body.streetNumber;
@@ -184,7 +186,7 @@ router.post('/applicants', (req, res) => {
         console.log(req.body)
     });
 });
-   
+
 
 // Obtenemos nuestro API List
 router.get('/', (req,res) => {
